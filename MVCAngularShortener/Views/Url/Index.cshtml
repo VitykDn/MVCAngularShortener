@@ -3,51 +3,49 @@
 @{
     ViewData["Title"] = "Index";
 }
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        <a class="btn btn-primary" asp-action="Create"><i class="fas fa-plus"></i> Create New</a>
+    </p>
+}
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
-            <th>
+            <th style="width: 50%">
                 @Html.DisplayNameFor(model => model.FullUrl)
             </th>
-            <th>
+            <th style="width: 30%">
                 @Html.DisplayNameFor(model => model.ShortUrl)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedBy)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreatedDate)
-            </th>
-            <th></th>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <th style="width: 20%">Actions</th>
+            }
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FullUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ShortUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="width: 50%">
+                    @Html.DisplayFor(modelItem => item.FullUrl)
+                </td>
+                <td style="width: 30%">
+                    @Html.DisplayFor(modelItem => item.ShortUrl)
+                </td>
+                @if (User.IsInRole("Admin") || User.Identity.Name == item.CreatedBy)
+                {
+                    <div class="url-actions">
+                    <td style="width: 20%">
+                        <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i> Details</a>
+                        <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i> Delete</a>
+                    </td>
+                    </div>
+                }
+
+            </tr>
+        }
     </tbody>
 </table>

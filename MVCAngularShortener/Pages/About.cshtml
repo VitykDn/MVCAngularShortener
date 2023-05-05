@@ -1,0 +1,25 @@
+﻿@page
+@using MVCAngularShortener.Views.Pages
+@model AboutModel
+@{
+    Layout = "_Layout";
+}
+
+<div>
+    @Model.AlgorithmDescription
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <hr />
+    <form method="post" class="mt-4">
+        @Html.AntiForgeryToken()
+        <div class=" form-group">
+            <textarea class="form-control" asp-for="AlgorithmDescription"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Save</button>
+    </form>
+
+}
+
+

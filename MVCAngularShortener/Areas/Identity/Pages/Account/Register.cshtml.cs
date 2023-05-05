@@ -135,7 +135,7 @@ namespace MVCAngularShortener.Areas.Identity.Pages.Account
                     if (Input.IsAdmin)
                     {
 
-                        var identityRole = _roleManager.FindByNameAsync("Default").Result;
+                        var identityRole = _roleManager.FindByNameAsync("Admin").Result;
 
                         if (identityRole != null)
                         {

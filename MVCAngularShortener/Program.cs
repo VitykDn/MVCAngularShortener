@@ -26,8 +26,9 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => {
     options.Password.RequireLowercase = false;
     options.Password.RequireDigit = false;
     options.Password.RequiredLength = 4;
-    
+
 })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
@@ -55,7 +56,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Url}/{action=Index}/{id?}");
 app.MapRazorPages();
 var context = app.Services.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
 app.Run();

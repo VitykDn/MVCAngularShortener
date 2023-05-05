@@ -1,0 +1,1 @@
+{"AlgorithmDescription":"This algorithm creates a unique shortened URL for each long URL using a hash-based encoding approach. When a user accesses the shortened URL, the system looks up the corresponding original URL and redirects the user to the original URL's location."}

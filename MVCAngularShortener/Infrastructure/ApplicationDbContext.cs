@@ -18,7 +18,6 @@ namespace MVCAngularShortener.Data
         {
             base.OnModelCreating(builder);
             builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
-            string ADMIN_ID = "02174cf0–9412–4cfe - afbf - 59f706d72cf6";
             string ROLE_ID = "341743f0 - asd2–42de - afbf - 59kmkkmk72cf6";
 
             //seed admin role
@@ -33,7 +32,6 @@ namespace MVCAngularShortener.Data
 
         public DbSet<Url> Urls { get; set; }
 
-        public DbSet<MVCAngularShortener.Models.ViewModels.UrlViewModel>? UrlViewModel { get; set; }
 
     }
 
